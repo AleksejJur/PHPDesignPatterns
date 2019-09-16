@@ -14,7 +14,7 @@ class Ship implements TransportInterface
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -33,6 +33,11 @@ class Ship implements TransportInterface
      * @ORM\Column(type="float", nullable=true)
      */
     private $maxSpeed;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $color;
 
     /**
      * @return int|null
@@ -95,6 +100,25 @@ class Ship implements TransportInterface
     public function setMaxSpeed(?float $maxSpeed): ?Ship
     {
         $this->maxSpeed = $maxSpeed;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     * @return Ship|null
+     */
+    public function setColor(string $color): ?Ship
+    {
+        $this->color = $color;
 
         return $this;
     }

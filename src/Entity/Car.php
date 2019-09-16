@@ -14,7 +14,7 @@ class Car implements TransportInterface
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -30,9 +30,19 @@ class Car implements TransportInterface
     private $model;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $color;
+
+    /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $maxSpeed;
+
+//    public function __construct()
+//    {
+//        $this->id = $this->setId();
+//    }
 
     public function getId(): ?int
     {
@@ -92,6 +102,25 @@ class Car implements TransportInterface
     public function setMaxSpeed(?float $maxSpeed): ?Car
     {
         $this->maxSpeed = $maxSpeed;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     * @return Car|null
+     */
+    public function setColor(string $color): ?Car
+    {
+        $this->color = $color;
 
         return $this;
     }

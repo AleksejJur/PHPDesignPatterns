@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\Ship;
+use App\Entity\Car;
 
-class ShipFactory
+class CarFactory
 {
     /**
      * @param string|null $brand
@@ -14,15 +14,15 @@ class ShipFactory
      * @param float|null $maxSpeed
      * @param string|null $color
      *
-     * @return Ship
+     * @return Car
      */
-    public static function createShip(
+    public static function createCar(
         ?string $brand = null,
         ?string $model = null,
         ?float $maxSpeed = null,
         ?string $color = null
-    ): Ship {
-        $ship = new Ship();
+    ): Car {
+        $ship = new Car();
         $ship->setBrand($brand)
             ->setModel($model)
             ->setMaxSpeed($maxSpeed)

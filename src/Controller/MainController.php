@@ -20,15 +20,24 @@ class MainController extends AbstractController
      */
     public function showIndex()
     {
-        $ship = ShipFactory::createShip('zaz', 'zaza', 0.55, 'red');
 
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $ship = ShipFactory::createShip('ShipBrand', 'ShipModel', 0.55, 'red');
+        $car = ShipFactory::createShip('CarBrand', 'CarModel', 290.00, 'blue');
+
+        $entityManager->persist($ship);
+        $entityManager->persist($car);
+        $entityManager->flush();
 
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
-
         $serializer = new Serializer($normalizers, $encoders);
+        $serializedShip = $serializer->serialize($ship, 'json');
+        $serializedCar = $serializer->serialize($car, 'json');
 
-        $x = $serializer->serialize($ship, 'json');
-        return new Response($x);
+        $array = [$serializedShip, $serializedCar];
+
+        return new Response(implode("|", $array));
     }
 }

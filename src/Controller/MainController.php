@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Factory\ShipFactory;
+use App\Factory\SimpleFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,22 +23,37 @@ class MainController extends AbstractController
     {
 
         $entityManager = $this->getDoctrine()->getManager();
+        $serializer = $this->createSerializer();
 
         $ship = ShipFactory::createShip('ShipBrand', 'ShipModel', 0.55, 'red');
         $car = ShipFactory::createShip('CarBrand', 'CarModel', 290.00, 'blue');
 
+        $simpleFactory = new SimpleFactory();
+        $newCarCreatedWithSimpleFactory = $simpleFactory->createShip('ShipBrand', 'ShipModel', 0.55, 'red');
+
         $entityManager->persist($ship);
         $entityManager->persist($car);
+        $entityManager->persist($newCarCreatedWithSimpleFactory);
         $entityManager->flush();
 
+        $serializedShip = $serializer->serialize($ship, 'json');
+        $serializedCar = $serializer->serialize($car, 'json');
+        $serializedCarSimpleFactory = $serializer->serialize($newCarCreatedWithSimpleFactory, 'json');
+
+        $array = [$serializedShip, $serializedCar, $serializedCarSimpleFactory];
+
+        return new Response(implode("|", $array));
+    }
+
+    /**
+     * @return Serializer
+     */
+    private function createSerializer(): Serializer
+    {
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers, $encoders);
-        $serializedShip = $serializer->serialize($ship, 'json');
-        $serializedCar = $serializer->serialize($car, 'json');
 
-        $array = [$serializedShip, $serializedCar];
-
-        return new Response(implode("|", $array));
+        return $serializer;
     }
 }

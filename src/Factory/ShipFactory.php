@@ -16,7 +16,7 @@ class ShipFactory
      *
      * @return Ship
      */
-    public static function createShip(
+    public function createShip(
         ?string $brand = null,
         ?string $model = null,
         ?float $maxSpeed = null,

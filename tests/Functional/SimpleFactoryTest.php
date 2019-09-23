@@ -3,15 +3,17 @@
 namespace App\Tests\Functional;
 
 use App\Entity\Ship;
-use App\Factory\ShipFactory;
+use App\Factory\SimpleFactory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SimpleFactoryTest extends WebTestCase
 {
     public function testCanCreateShip()
     {
-        $shipFactory = new ShipFactory();
-        $ship = $shipFactory->createShip('ShipBrand', 'ShipModel', 0.55, 'red');
+        $simpleFactory = new SimpleFactory();
+
+        $ship = $simpleFactory->createShip('ShipBrand', 'ShipModel', 0.55, 'red');
+
         $this->assertInstanceOf(Ship::class, $ship);
     }
 }

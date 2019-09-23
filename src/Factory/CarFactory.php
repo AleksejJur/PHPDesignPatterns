@@ -16,7 +16,7 @@ class CarFactory
      *
      * @return Car
      */
-    public static function createCar(
+    public function createCar(
         ?string $brand = null,
         ?string $model = null,
         ?float $maxSpeed = null,

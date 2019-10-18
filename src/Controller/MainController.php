@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Factory\ShipFactory;
-use App\Factory\SimpleFactory;
+use App\Factory\SimpleFactory\SimpleFactory;
 use App\Factory\StaticFactory\StaticFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,6 +45,8 @@ class MainController extends AbstractController
 
         return new Response(implode("|", $array));
     }
+
+
 
     /**
      * @Route("/staticFactory")

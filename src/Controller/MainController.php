@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Factory\ShipFactory;
 use App\Factory\SimpleFactory;
+use App\Factory\StaticFactory\StaticFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,6 +44,17 @@ class MainController extends AbstractController
         $array = [$serializedShip, $serializedCar, $serializedCarSimpleFactory];
 
         return new Response(implode("|", $array));
+    }
+
+    /**
+     * @Route("/staticFactory")
+     */
+    public function staticFactory()
+    {
+        $stringFormatter = StaticFactory::factory('string');
+        $numberFormatter = StaticFactory::factory('number');
+
+        return new Response($stringFormatter->format('5') . '<br>' . $numberFormatter->format('55'));
     }
 
     /**

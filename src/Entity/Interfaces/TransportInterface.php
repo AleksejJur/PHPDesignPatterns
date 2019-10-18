@@ -6,8 +6,5 @@ namespace App\Entity\Interfaces;
 
 interface TransportInterface
 {
-    /**
-     * @return string
-     */
-    public function showMaxSpeed(): string;
+    public function transportType(): string;
 }

@@ -126,8 +126,9 @@ class Ship implements TransportInterface
     /**
      * @return string
      */
-    public function showMaxSpeed(): string
+    public function transportType(): string
     {
-        return $this->showMaxSpeed();
+        echo 'its amazing car';
+        return 'its amazing car';
     }
 }

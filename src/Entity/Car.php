@@ -39,11 +39,6 @@ class Car implements TransportInterface
      */
     private $maxSpeed;
 
-//    public function __construct()
-//    {
-//        $this->id = $this->setId();
-//    }
-
     public function getId(): ?int
     {
         return $this->id;

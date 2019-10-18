@@ -3,7 +3,7 @@
 namespace App\Tests\Functional;
 
 use App\Entity\Ship;
-use App\Factory\SimpleFactory;
+use App\Factory\SimpleFactory\SimpleFactory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SimpleFactoryTest extends WebTestCase

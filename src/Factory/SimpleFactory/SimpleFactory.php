@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Factory;
+namespace App\Factory\SimpleFactory;
 
 use App\Entity\Car;
 use App\Entity\Ship;

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Entity\Interfaces\TransportInterface;
 use App\Entity\Ship;
+use App\Entity\TransportCreator;
 
-class ShipFactory
+class ShipFactory extends TransportCreator
 {
     /**
      * @param string|null $brand
@@ -14,14 +16,14 @@ class ShipFactory
      * @param float|null $maxSpeed
      * @param string|null $color
      *
-     * @return Ship
+     * @return TransportInterface
      */
-    public function createShip(
+    public function factoryMethod(
         ?string $brand = null,
         ?string $model = null,
         ?float $maxSpeed = null,
         ?string $color = null
-    ): Ship {
+    ): TransportInterface {
         $ship = new Ship();
         $ship->setBrand($brand)
             ->setModel($model)
